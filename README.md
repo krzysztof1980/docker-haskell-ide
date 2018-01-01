@@ -8,7 +8,7 @@ sudo docker build -t krzysztof1980/docker-haskell-ide .
 ```
 
 # Running Atom-Haskell
-I describe how to run it on Linux with X-server running. For more detais, see [this StackOverflow answer](https://stackoverflow.com/questions/25281992/alternatives-to-ssh-x11-forwarding-for-docker-containers/25334301#25334301), for another operating systems you can try [this one](https://stackoverflow.com/questions/16296753/can-you-run-gui-apps-in-a-docker-container/36190462#36190462).
+I describe how to run it on Linux with X-server running. For more detais, see [this StackOverflow answer](https://stackoverflow.com/questions/25281992/alternatives-to-ssh-x11-forwarding-for-docker-containers/25334301#25334301), for another operating systems you can try [this one](https://stackoverflow.com/questions/16296753/can-you-run-gui-apps-in-a-docker-container/36190462#36190462). For alternative method, take a look at [mviereck/x11docker](https://github.com/mviereck/x11docker) - I did not test this project, but it claims to offer more security.
 
 1. The method uses X11 socket to connect the docker container to the X-server running on host. Because of security policies, you may need to execute `xhost +si:localuser:$USER` in your terminal. 
 1. The docker container is meant to be ephemeral, so to not loose any installed Stack packages and atom settings, you will bind mount several directories, that you need to create now:
@@ -30,7 +30,7 @@ I describe how to run it on Linux with X-server running. For more detais, see [t
                     krzysztof1980/haskell-ide
     ```
     Notice, that the first volume definition needs to be provided as given, the next 4 definitions can have their first parts chosen by you, because they define directories on your host, that the directories in the docker container, that I described in previous step, will be mapped to.
-1. When the container is started, it tells stack to build some binary dependencies for Atom Haskell, as described [here](https://atom-haskell.github.io/installation/installing-binary-dependencies/). On further runs, it does not cost any time, because stack recognizes, that there is nothing to do. What may slow down the startup time a little is installation of Atom packages.
+1. When the container is started, it tells stack to build some binary dependencies for Atom Haskell, as described [here](https://atom-haskell.github.io/installation/installing-binary-dependencies/). On further runs, it does not cost any time, because stack recognizes, that there is nothing to do. What may slow down the startup time a little is installation of Atom packages. To prevent this, you can overwrite the command from Dockerfile - just append `atom f` to your docker run command.
 
 # Credits
 The part of my Dockerfile that installs Atom is based on https://github.com/jamesnetherton/docker-atom-editor. 
