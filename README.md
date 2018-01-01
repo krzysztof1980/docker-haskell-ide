@@ -30,7 +30,7 @@ I describe how to run it on Linux with X-server running. For more detais, see [t
                     krzysztof1980/haskell-ide
     ```
     Notice, that the first volume definition needs to be provided as given, the next 4 definitions can have their first parts chosen by you, because they define directories on your host, that the directories in the docker container, that I described in previous step, will be mapped to.
-1. When the container is started, it tells stack to build some binary dependencies for Atom Haskell, as described [here](https://atom-haskell.github.io/installation/installing-binary-dependencies/). On further runs, it does not cost any time, because stack recognizes, that there is nothing to do. What may slow down the startup time a little is installation of Atom packages. To prevent this, you can overwrite the command from Dockerfile - just append `atom f` to your docker run command.
+1. When the container is started, it tells stack to build some binary dependencies for Atom Haskell, as described [here](https://atom-haskell.github.io/installation/installing-binary-dependencies/). On further runs, it does not cost any time, because stack recognizes, that there is nothing to do. What may slow down the startup time a little is installation of Atom packages. To prevent this, you can overwrite the command from Dockerfile - just append `atom -f` to your docker run command.
 
 # Credits
 The part of my Dockerfile that installs Atom is based on https://github.com/jamesnetherton/docker-atom-editor. 
