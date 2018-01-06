@@ -45,7 +45,6 @@ WORKDIR $PROJECTS_DIR
 VOLUME ["$HOME/.stack","$HOME/.atom","$HOME/.local/bin","$PROJECTS_DIR"]
 
 CMD stack setup && \
-	stack install stylish-haskell && \
-	stack install ghc-mod && \
-	apm install language-haskell ide-haskell ide-haskell-cabal haskell-ghc-mod autocomplete-haskell && \
+	stack install ghc-mod hoogle hasktags pointfree pointful cabal-install hindent && \
+	apm install atom-haskell && \
 	atom -f
